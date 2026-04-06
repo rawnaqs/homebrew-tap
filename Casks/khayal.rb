@@ -34,9 +34,10 @@ cask "khayal" do
 
   binary "khayal"
 
-  service "run [opt_bin/"khayal", "start"]
-keep_alive true
-"
+  service do
+    run [opt_bin/"khayal", "start"]
+    keep_alive true
+  end
 
   # No zap stanza required
 
