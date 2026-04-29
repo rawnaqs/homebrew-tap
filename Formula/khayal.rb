@@ -5,13 +5,13 @@
 class Khayal < Formula
   desc "Your private treasury of thought. Local, secure, yours."
   homepage "https://github.com/rawnaqs/khayal"
-  version "0.1.3"
+  version "0.1.4"
   license "AGPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.3/khayal_0.1.3_darwin_amd64.tar.gz"
-      sha256 "b283da81214a1ba6238f81e0dab63078afe5b502cbfa1f5a322fab441220fe28"
+      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.4/khayal_0.1.4_darwin_amd64.tar.gz"
+      sha256 "2c548f18ccc4fe5c40c8772a77cbf597e5c0c7aebf46b0e5b32766d38da75dec"
 
       define_method(:install) do
         bin.install "khayal"
@@ -21,8 +21,8 @@ class Khayal < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.3/khayal_0.1.3_darwin_arm64.tar.gz"
-      sha256 "670cd740e4fb4880f539c5ddefd4ed6b42d0244159d145cb98dde54c51b07301"
+      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.4/khayal_0.1.4_darwin_arm64.tar.gz"
+      sha256 "04a01b28315d7798b3c73ef713e850a657586f60e69056eb92ab8b700c9dae39"
 
       define_method(:install) do
         bin.install "khayal"
@@ -35,8 +35,8 @@ class Khayal < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.3/khayal_0.1.3_linux_amd64.tar.gz"
-      sha256 "dbc46cccf13fe58e17663d01b17d001c330f1d64b8de3afe02385a0ae4a7ee32"
+      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.4/khayal_0.1.4_linux_amd64.tar.gz"
+      sha256 "760e923b5511e582ae43e3ff5bdf840b394e78c168d54ea0478b931809b438df"
       define_method(:install) do
         bin.install "khayal"
         (bash_completion/"khayal").write Utils.safe_popen_read(bin/"khayal", "completion", "bash")
@@ -45,8 +45,8 @@ class Khayal < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.3/khayal_0.1.3_linux_arm64.tar.gz"
-      sha256 "c88e65b62c38695a00de910d7b68389af3f64f873a70df5bed9ed5244c8eba1e"
+      url "https://github.com/rawnaqs/khayal/releases/download/v0.1.4/khayal_0.1.4_linux_arm64.tar.gz"
+      sha256 "65835828ea7a19bcc48dde63b4477d8578fe3bfe7850d25595c558870fee23c1"
       define_method(:install) do
         bin.install "khayal"
         (bash_completion/"khayal").write Utils.safe_popen_read(bin/"khayal", "completion", "bash")
@@ -56,8 +56,18 @@ class Khayal < Formula
     end
   end
 
+  def caveats
+    <<~EOS
+      After installation, run `khayal init` to set up your vault and generate an auth token.
+      Then start the server with:
+        khayal start
+      Or run as a background service:
+        brew services start khayal
+    EOS
+  end
+
   service do
-    run [opt_bin/"khayal", "start"]
+    run [bin/"khayal", "start"]
     keep_alive true
     log_path var/"log/khayal.log"
     error_log_path var/"log/khayal.err.log"
