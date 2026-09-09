@@ -5,13 +5,13 @@
 class Kl < Formula
   desc "Khayal CLI client — capture, search, status."
   homepage "https://github.com/rawnaqs/khayal"
-  version "1.1.2"
+  version "1.2.0"
   license "AGPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/rawnaqs/khayal/releases/download/v1.1.2/khayal-client_1.1.2_darwin_amd64.tar.gz"
-      sha256 "cddd4b92e6b7ee84824c847c3e71329b9c2f972967b68ece13c214b15a926812"
+      url "https://github.com/rawnaqs/khayal/releases/download/v1.2.0/khayal-client_1.2.0_darwin_amd64.tar.gz"
+      sha256 "069a6e167a1793f0cfa9bfaacae9ac9ee89f19f0cb8125ed53f8bd77b20edba1"
 
       define_method(:install) do
         bin.install "kl"
@@ -21,8 +21,8 @@ class Kl < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/rawnaqs/khayal/releases/download/v1.1.2/khayal-client_1.1.2_darwin_arm64.tar.gz"
-      sha256 "601decc267d28f3146fde72f3f0a773e397ae83b72651de8a8980903da241ebe"
+      url "https://github.com/rawnaqs/khayal/releases/download/v1.2.0/khayal-client_1.2.0_darwin_arm64.tar.gz"
+      sha256 "7bb1645c7c200c2bbd9b704dc29c1a3d8704e01125da605cce470fac343f455f"
 
       define_method(:install) do
         bin.install "kl"
@@ -35,8 +35,8 @@ class Kl < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/rawnaqs/khayal/releases/download/v1.1.2/khayal-client_1.1.2_linux_amd64.tar.gz"
-      sha256 "c0af1aa5a7e5dd494c4469276bbc8c12c621e3cef658c4ad1173d6e390a3b9a1"
+      url "https://github.com/rawnaqs/khayal/releases/download/v1.2.0/khayal-client_1.2.0_linux_amd64.tar.gz"
+      sha256 "d401bd918ada6b5022e8b36b8cfe2890602942f4fa3a4676a120fe7b06e8552e"
       define_method(:install) do
         bin.install "kl"
         (bash_completion/"kl").write Utils.safe_popen_read(bin/"kl", "completion", "bash")
@@ -45,8 +45,8 @@ class Kl < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/rawnaqs/khayal/releases/download/v1.1.2/khayal-client_1.1.2_linux_arm64.tar.gz"
-      sha256 "b3178042d9f09801fc66510e7fedccfb1facc5e5999afb0eac89207389b25b10"
+      url "https://github.com/rawnaqs/khayal/releases/download/v1.2.0/khayal-client_1.2.0_linux_arm64.tar.gz"
+      sha256 "8a144efd8632801d2f5c11878587d83976806fb25e4bf050cc0c0f7c548947f3"
       define_method(:install) do
         bin.install "kl"
         (bash_completion/"kl").write Utils.safe_popen_read(bin/"kl", "completion", "bash")
